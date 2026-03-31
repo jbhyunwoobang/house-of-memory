@@ -884,6 +884,7 @@ function goHome() {
 }
 function showAbout() {
   if (isAnim) return;
+  triggerIntro();
   fadeTransition(() => { showScreen('screen-about'); });
 }
 function goToRoom(n) {
