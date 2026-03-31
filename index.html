@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE HOUSE OF MEMORY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== INTRO ===== -->
+  <section id="intro">
+    <div id="intro-bg"></div>
+    <div id="intro-content">
+      <h1 id="intro-title">THE HOUSE OF MEMORY</h1>
+      <p id="intro-sub">방한민 독립운동가의 기억</p>
+    </div>
+    <div id="scroll-hint">
+      <span>SCROLL · TOUCH · ANY KEY</span>
+      <div class="hint-arrow">↓</div>
+    </div>
+  </section>
+
+  <!-- ===== MUSEUM ===== -->
+  <section id="museum" class="hidden">
+
+    <!-- NAV -->
+    <nav id="navbar">
+      <button id="home-btn" class="nav-btn" title="홈으로">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        HOME
+      </button>
+      <h2 id="nav-title">THE HOUSE OF MEMORY</h2>
+      <button id="about-btn" class="nav-btn">ABOUT</button>
+    </nav>
+
+    <!-- VIEWS -->
+    <div id="view-wrap">
+      <div class="view active" id="view-0" data-index="0">
+        <div class="view-bg" style="background-image: url('images/view-front.jpg')">
+          <div class="view-overlay"></div>
+          <div class="view-fallback front-fallback"></div>
+        </div>
+        <div class="hotspots">
+          <button class="hotspot" data-room="entrance" style="top:62%;left:49%">
+            <span class="hs-dot"></span><span class="hs-label">현관</span>
+          </button>
+          <button class="hotspot" data-room="study" style="top:44%;left:68%">
+            <span class="hs-dot"></span><span class="hs-label">서재</span>
+          </button>
+          <button class="hotspot" data-room="living" style="top:50%;left:30%">
+            <span class="hs-dot"></span><span class="hs-label">거실</span>
+          </button>
+        </div>
+        <button class="info-btn" data-view="0" title="이 장면 정보">?</button>
+        <div class="view-label">FRONT · 정면</div>
+      </div>
+
+      <div class="view" id="view-1" data-index="1">
+        <div class="view-bg" style="background-image: url('images/view-left.jpg')">
+          <div class="view-overlay"></div>
+          <div class="view-fallback left-fallback"></div>
+        </div>
+        <div class="hotspots">
+          <button class="hotspot" data-room="garden" style="top:68%;left:28%">
+            <span class="hs-dot"></span><span class="hs-label">정원</span>
+          </button>
+          <button class="hotspot" data-room="living" style="top:52%;left:58%">
+            <span class="hs-dot"></span><span class="hs-label">거실</span>
+          </button>
+        </div>
+        <button class="info-btn" data-view="1" title="이 장면 정보">?</button>
+        <div class="view-label">LEFT · 좌측</div>
+      </div>
+
+      <div class="view" id="view-2" data-index="2">
+        <div class="view-bg" style="background-image: url('images/view-behind.jpg')">
+          <div class="view-overlay"></div>
+          <div class="view-fallback behind-fallback"></div>
+        </div>
+        <div class="hotspots">
+          <button class="hotspot" data-room="kitchen" style="top:60%;left:40%">
+            <span class="hs-dot"></span><span class="hs-label">부엌</span>
+          </button>
+          <button class="hotspot" data-room="bedroom" style="top:45%;left:62%">
+            <span class="hs-dot"></span><span class="hs-label">침실</span>
+          </button>
+        </div>
+        <button class="info-btn" data-view="2" title="이 장면 정보">?</button>
+        <div class="view-label">BEHIND · 후면</div>
+      </div>
+
+      <div class="view" id="view-3" data-index="3">
+        <div class="view-bg" style="background-image: url('images/view-right.jpg')">
+          <div class="view-overlay"></div>
+          <div class="view-fallback right-fallback"></div>
+        </div>
+        <div class="hotspots">
+          <button class="hotspot" data-room="bedroom" style="top:48%;left:35%">
+            <span class="hs-dot"></span><span class="hs-label">침실</span>
+          </button>
+          <button class="hotspot" data-room="storage" style="top:65%;left:65%">
+            <span class="hs-dot"></span><span class="hs-label">광</span>
+          </button>
+        </div>
+        <button class="info-btn" data-view="3" title="이 장면 정보">?</button>
+        <div class="view-label">RIGHT · 우측</div>
+      </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <button id="prev-btn" class="arrow-btn" title="이전">&#8249;</button>
+    <button id="next-btn" class="arrow-btn" title="다음">&#8250;</button>
+
+    <!-- INDICATORS -->
+    <div id="indicators">
+      <button class="ind active" data-i="0">FRONT</button>
+      <button class="ind" data-i="1">LEFT</button>
+      <button class="ind" data-i="2">BEHIND</button>
+      <button class="ind" data-i="3">RIGHT</button>
+    </div>
+
+  </section>
+
+  <!-- ===== ROOM OVERLAY ===== -->
+  <div id="room-overlay" class="overlay hidden">
+    <button class="overlay-close" id="room-close">✕</button>
+
+    <div class="room-view" id="room-entrance">
+      <div class="room-bg" style="background-image: url('images/room-entrance.jpg')">
+        <div class="room-fallback entrance-room-fallback"></div>
+        <div class="room-overlay-dark"></div>
+      </div>
+      <div class="room-info-bar">
+        <div>
+          <h3>현관 · Entrance</h3>
+          <p>집으로 들어서는 첫 번째 공간</p>
+        </div>
+        <button class="info-btn room-info-btn" data-room-info="entrance">?</button>
+      </div>
+    </div>
+
+    <div class="room-view hidden" id="room-study">
+      <div class="room-bg" style="background-image: url('images/room-study.jpg')">
+        <div class="room-fallback study-room-fallback"></div>
+        <div class="room-overlay-dark"></div>
+      </div>
+      <div class="room-info-bar">
+        <div>
+          <h3>서재 · Study</h3>
+          <p>방한민 선생님의 사색과 집필의 공간</p>
+        </div>
+        <button class="info-btn room-info-btn" data-room-info="study">?</button>
+      </div>
+    </div>
+
+    <div class="room-view hidden" id="room-living">
+      <div class="room-bg" style="background-image: url('images/room-living.jpg')">
+        <div class="room-fallback living-room-fallback"></div>
+        <div class="room-overlay-dark"></div>
+      </div>
+      <div class="room-info-bar">
+        <div>
+          <h3>거실 · Living Room</h3>
+          <p>가족이 모이던 따뜻한 공간</p>
+        </div>
+        <button class="info-btn room-info-btn" data-room-info="living">?</button>
+      </div>
+    </div>
+
+    <div class="room-view hidden" id="room-garden">
+      <div class="room-bg" style="background-image: url('images/room-garden.jpg')">
+        <div class="room-fallback garden-room-fallback"></div>
+        <div class="room-overlay-dark"></div>
+      </div>
+      <div class="room-info-bar">
+        <div>
+          <h3>정원 · Garden</h3>
+          <p>사계절 피어나던 생명의 정원</p>
+        </div>
+        <button class="info-btn room-info-btn" data-room-info="garden">?</button>
+      </div>
+    </div>
+
+    <div class="room-view hidden" id="room-kitchen">
+      <div class="room-bg" style="background-image: url('images/room-kitchen.jpg')">
+        <div class="room-fallback kitchen-room-fallback"></div>
+        <div class="room-overlay-dark"></div>
+      </div>
+      <div class="room-info-bar">
+        <div>
+          <h3>부엌 · Kitchen</h3>
+          <p>온기가 가득했던 전통 부엌</p>
+        </div>
+        <button class="info-btn room-info-btn" data-room-info="kitchen">?</button>
+      </div>
+    </div>
+
+    <div class="room-view hidden" id="room-bedroom">
+      <div class="room-bg" style="background-image: url('images/room-bedroom.jpg')">
+        <div class="room-fallback bedroom-room-fallback"></div>
+        <div class="room-overlay-dark"></div>
+      </div>
+      <div class="room-info-bar">
+        <div>
+          <h3>침실 · Bedroom</h3>
+          <p>고요한 쉼의 공간</p>
+        </div>
+        <button class="info-btn room-info-btn" data-room-info="bedroom">?</button>
+      </div>
+    </div>
+
+    <div class="room-view hidden" id="room-storage">
+      <div class="room-bg" style="background-image: url('images/room-storage.jpg')">
+        <div class="room-fallback storage-room-fallback"></div>
+        <div class="room-overlay-dark"></div>
+      </div>
+      <div class="room-info-bar">
+        <div>
+          <h3>광 · Storage</h3>
+          <p>삶의 흔적이 담긴 저장 공간</p>
+        </div>
+        <button class="info-btn room-info-btn" data-room-info="storage">?</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== INFO POPUP ===== -->
+  <div id="info-popup" class="popup hidden">
+    <div class="popup-inner">
+      <button class="popup-close">✕</button>
+      <div id="popup-content"></div>
+    </div>
+  </div>
+
+  <!-- ===== ABOUT MODAL ===== -->
+  <div id="about-modal" class="overlay hidden">
+    <div class="about-inner">
+      <button class="overlay-close" id="about-close">✕</button>
+      <div class="about-content">
+        <div class="about-header">
+          <div class="about-portrait">
+            <img src="images/portrait.jpg" alt="방한민" onerror="this.style.display='none'" />
+            <div class="portrait-placeholder">
+              <span>방한민</span>
+            </div>
+          </div>
+          <div class="about-header-text">
+            <span class="about-tag">독립운동가</span>
+            <h1>방한민</h1>
+            <p class="about-hanja">方漢民</p>
+            <p class="about-dates">1880년대 — 일제강점기</p>
+          </div>
+        </div>
+
+        <div class="about-divider"></div>
+
+        <div class="about-sections">
+          <div class="about-section">
+            <h3>이 웹사이트에 대하여</h3>
+            <p>
+              <em>THE HOUSE OF MEMORY</em>는 독립운동가 방한민 선생님의 삶과 정신을 기억하기 위해 만들어진 온라인 박물관입니다.
+              블렌더(Blender)로 재현된 3D 가상 공간을 통해, 선생님이 살았던 집을 직접 방문하고 탐험하는 경험을 제공합니다.
+            </p>
+            <p>
+              이 집은 단순한 건물이 아니라 한 독립운동가의 삶이 깃든 장소입니다.
+              각 공간에는 선생님의 이야기와 그 시대의 역사가 담겨 있습니다.
+            </p>
+          </div>
+
+          <div class="about-section">
+            <h3>방한민 선생님의 삶</h3>
+            <p>
+              방한민 선생님은 일제강점기 시대를 살아가며 조국의 독립을 위해 헌신한 독립운동가입니다.
+              선생님은 나라를 잃은 시대에도 희망을 잃지 않고, 조국의 광복을 위해 온 생애를 바치셨습니다.
+            </p>
+            <p>
+              선생님의 삶은 단순한 개인의 이야기가 아니라, 그 시대를 살았던 수많은 독립운동가들의
+              용기와 헌신을 대표합니다.
+            </p>
+          </div>
+
+          <div class="about-section">
+            <h3>주요 업적 및 활동</h3>
+            <ul class="about-list">
+              <li>일제강점기 독립운동 참여</li>
+              <li>조국 광복을 위한 헌신과 희생</li>
+              <li>민족 정신 수호와 계몽 활동</li>
+              <li>후손들에게 독립 의지와 애국심 전승</li>
+            </ul>
+            <p class="about-note">
+              * 더 자세한 생애 기록과 업적을 이 공간에 추가할 수 있습니다.
+            </p>
+          </div>
+
+          <div class="about-section">
+            <h3>기억하며</h3>
+            <p>
+              이 웹사이트는 방한민 선생님의 고손자가 선생님의 삶과 정신을 기리기 위해 제작하였습니다.
+              선생님의 이야기가 디지털 공간에서 영원히 기억되기를 바랍니다.
+            </p>
+            <blockquote class="about-quote">
+              "기억하는 것이 존경이며, 존경이 곧 이어가는 것이다."
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
