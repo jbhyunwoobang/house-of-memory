@@ -104,7 +104,9 @@ html, body {
   width: 44px; min-height: 60px; overflow: visible;
 }
 .hs-num .num {
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(22px, 3.5vw, 40px); font-weight: 700; color: white;
+  font-style: normal; font-variant-numeric: lining-nums;
   text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.5);
   line-height: 1; display: inline-block; transform-origin: bottom center;
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -294,12 +296,50 @@ html, body {
 #screen-about { background: var(--cream); overflow-y: auto; }
 #screen-about .nav-logo,
 #screen-about .nav-about { color: var(--dark-brown); }
-.about-wrap { max-width: 680px; margin: 0 auto; padding: 110px 36px 80px; }
+.about-wrap { max-width: 720px; margin: 0 auto; padding: 100px 36px 100px; }
 .about-eyebrow { font-size: 11px; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; }
-.about-h1 { font-size: clamp(30px,5vw,52px); font-weight: 400; color: var(--dark-brown); letter-spacing: 0.04em; margin-bottom: 12px; line-height: 1.15; }
+.about-h1 { font-size: clamp(30px,5vw,52px); font-weight: 400; color: var(--dark-brown); letter-spacing: 0.04em; margin-bottom: 6px; line-height: 1.15; }
+.about-h1-sub { font-size: 14px; letter-spacing: 0.15em; color: var(--tan); margin-bottom: 4px; }
+.about-dates { font-size: 13px; color: var(--tan); letter-spacing: 0.08em; margin-bottom: 0; }
 .about-gold-line { width: 50px; height: 2px; background: var(--gold); margin: 28px 0; }
-.about-p { font-size: 17px; line-height: 2; color: var(--brown); font-weight: 300; margin-bottom: 20px; }
-.about-caption { font-size: 13px; color: var(--tan); letter-spacing: 0.12em; line-height: 1.8; margin-top: 48px; }
+.about-p { font-size: 16px; line-height: 1.95; color: var(--brown); font-weight: 300; margin-bottom: 18px; }
+.about-caption { font-size: 13px; color: var(--tan); letter-spacing: 0.12em; line-height: 1.8; margin-top: 56px; }
+
+/* hero portrait row */
+.about-hero { display: flex; gap: 36px; align-items: flex-start; margin-bottom: 36px; }
+.about-photo { flex-shrink: 0; width: 150px; height: 190px; object-fit: cover; object-position: top; border: 1px solid rgba(107,68,35,0.2); }
+.about-photo-placeholder { flex-shrink: 0; width: 150px; height: 190px; background: var(--warm-beige); display: flex; align-items: center; justify-content: center; color: var(--tan); font-size: 12px; letter-spacing: 0.1em; border: 1px solid rgba(107,68,35,0.2); }
+.about-hero-text { flex: 1; padding-top: 6px; }
+
+/* section headers */
+.about-section-title { font-size: 11px; letter-spacing: 0.32em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; margin-top: 40px; }
+
+/* timeline */
+.about-timeline { list-style: none; padding: 0; margin: 0 0 8px; }
+.about-timeline li { display: flex; gap: 20px; margin-bottom: 18px; align-items: flex-start; }
+.about-timeline .yr { flex-shrink: 0; width: 52px; font-size: 12px; letter-spacing: 0.06em; color: var(--gold); font-weight: 500; padding-top: 2px; }
+.about-timeline .ev { font-size: 15px; line-height: 1.75; color: var(--brown); font-weight: 300; }
+.about-timeline .ev strong { font-weight: 500; color: var(--dark-brown); }
+
+/* external link button */
+.about-link-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 36px; padding: 12px 24px;
+  background: var(--dark-brown); color: var(--cream);
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.about-link-btn:hover { background: var(--brown); transform: translateY(-1px); }
+.about-link-btn svg { opacity: 0.7; }
+
+@media (max-width: 600px) {
+  .about-hero { flex-direction: column; gap: 20px; }
+  .about-photo, .about-photo-placeholder { width: 120px; height: 155px; }
+  .about-wrap { padding: 90px 20px 80px; }
+  .about-timeline li { gap: 12px; }
+  .about-timeline .yr { width: 42px; font-size: 11px; }
+}
 
 /* ========== CLICK HINT ========== */
 #clickHint {
@@ -381,7 +421,7 @@ html, body {
 ===================================================================== -->
 <div class="screen active" id="screen-overview">
 
-  <div class="nav" style="z-index:210;">
+  <div class="nav" style="z-index:750;">
     <span class="nav-logo" onclick="goHome()">THOM</span>
     <span class="nav-about" onclick="showAbout()">ABOUT</span>
   </div>
@@ -424,9 +464,10 @@ html, body {
       <img src="images/overview-left.png" alt="오른쪽 뷰">
       <div class="bg-placeholder"><span class="ph-icon">🏠</span>오른쪽 뷰<span class="ph-name">images/overview-left.png</span></div>
     </div>
-    <div class="hs-num" style="left:27%;top:53%;"  onclick="goToRoom(3)"><span class="num">3</span></div>
-    <div class="hs-num" style="left:72%;top:26%;"  onclick="goToRoom(4)"><span class="num">4</span></div>
-    <div class="hs-num" style="left:78%;top:62%;"  onclick="goToRoom(2)"><span class="num">2</span></div>
+    <div class="hs-num" style="left:36%;top:43%;"  onclick="goToRoom(3)"><span class="num">3</span></div>
+    <div class="hs-num" style="left:60%;top:26%;"  onclick="goToRoom(4)"><span class="num">4</span></div>
+    <div class="hs-num" style="left:65%;top:62%;"  onclick="goToRoom(2)"><span class="num">2</span></div>
+    <div class="hs-num" style="left:78%;top:43%;"  onclick="goToRoom(1)"><span class="num">1</span></div>
   </div>
 
   <!-- 클릭 힌트 -->
@@ -665,24 +706,100 @@ html, body {
     <span class="nav-about" style="color:var(--dark-brown);" onclick="goHome()">← 돌아가기</span>
   </div>
   <div class="about-wrap">
-    <div class="about-eyebrow">온라인 박물관 · 가족의 기억</div>
-    <h1 class="about-h1">The House<br>of Memory</h1>
+
+    <!-- Hero: photo + name block -->
+    <div class="about-hero">
+      <img class="about-photo" src="images/portrait.jpg" alt="방한민 선생님"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="about-photo-placeholder" style="display:none;">사진 준비 중</div>
+      <div class="about-hero-text">
+        <div class="about-eyebrow">독립운동가 · 교육자</div>
+        <h1 class="about-h1">방한민<br><span style="font-size:0.55em;letter-spacing:0.18em;">Bang Hanmin</span></h1>
+        <div class="about-dates">1900년 6월 1일 — 1968년 2월 9일</div>
+      </div>
+    </div>
+
     <div class="about-gold-line"></div>
+
+    <!-- Biography -->
+    <div class="about-section-title">생애</div>
     <p class="about-p">
-      이 웹사이트는 할아버지의 삶과 기억을 보존하기 위해 만들어진 인터랙티브 온라인 박물관입니다.
-      3D로 재현된 집을 직접 둘러보며, 그분의 삶에서 중요했던 공간과 물건들을 탐험할 수 있습니다.
+      방한민 선생님은 1900년 충청남도 논산에서 태어나셨습니다.
+      아버지 방씨와 어머니 이씨 사이에서 태어나 어린 시절부터 뛰어난 학문적 자질을 보이셨으며,
+      지역 서당에서 한학을 익히고 이후 근대 교육을 받으셨습니다.
     </p>
     <p class="about-p">
-      Blender로 모델링한 한옥을 웹사이트로 구현하여, 시간과 공간을 초월해
-      가족의 역사를 생생하게 전달합니다.
+      일제강점기라는 어두운 시대를 온몸으로 살아내신 선생님은,
+      민족의 독립과 후세대 교육을 위해 평생을 헌신하셨습니다.
+      독립운동에 참여하시면서도 고향 논산에 서재를 열어 아이들을 가르치셨으며,
+      배움이 곧 저항이요 희망임을 몸소 보여주셨습니다.
     </p>
+    <p class="about-p">
+      해방 이후에도 지역 사회의 교육 발전과 문화 보존에 힘쓰시며,
+      1968년 2월 9일 조용히 눈을 감으실 때까지 후학들의 존경을 한 몸에 받으셨습니다.
+    </p>
+
     <div class="about-gold-line"></div>
-    <div class="about-eyebrow" style="margin-top:0;">이용 방법</div>
+
+    <!-- Timeline -->
+    <div class="about-section-title">연보</div>
+    <ul class="about-timeline">
+      <li>
+        <span class="yr">1900</span>
+        <span class="ev"><strong>출생</strong> — 충청남도 논산 출생. 어린 시절부터 학문에 뜻을 두다.</span>
+      </li>
+      <li>
+        <span class="yr">1919</span>
+        <span class="ev"><strong>3·1운동 참여</strong> — 19세의 나이로 만세운동에 동참하여 민족 독립의 의지를 세우다.</span>
+      </li>
+      <li>
+        <span class="yr">1920년대</span>
+        <span class="ev"><strong>교육 활동 시작</strong> — 논산 지역에 서재를 열고 청소년들에게 한학과 근대 학문을 가르치다.</span>
+      </li>
+      <li>
+        <span class="yr">1930년대</span>
+        <span class="ev"><strong>독립운동 지속</strong> — 일제의 감시 속에서도 민족의식 고취와 독립운동 지원을 멈추지 않다.</span>
+      </li>
+      <li>
+        <span class="yr">1945</span>
+        <span class="ev"><strong>광복</strong> — 해방의 기쁨을 맞이하며 지역 재건과 교육 정상화에 앞장서다.</span>
+      </li>
+      <li>
+        <span class="yr">1950년대</span>
+        <span class="ev"><strong>전후 교육 헌신</strong> — 한국전쟁 이후 피폐해진 고향에서 아이들의 교육을 위해 사재를 털어 서당을 유지하다.</span>
+      </li>
+      <li>
+        <span class="yr">1960년대</span>
+        <span class="ev"><strong>지역 문화 보존</strong> — 논산 지역의 전통 문화와 역사 기록 보존에 힘쓰며 후세에 뜻을 전하다.</span>
+      </li>
+      <li>
+        <span class="yr">1968</span>
+        <span class="ev"><strong>별세</strong> — 2월 9일, 68세를 일기로 조용히 영면에 드시다.</span>
+      </li>
+      <li>
+        <span class="yr">1990</span>
+        <span class="ev"><strong>독립운동 공훈 인정</strong> — 정부로부터 독립운동 공훈을 인정받아 후손들에게 그 뜻이 전해지다.</span>
+      </li>
+    </ul>
+
+    <div class="about-gold-line"></div>
+
+    <!-- Footer note + link button -->
     <p class="about-p">
-      메인 화면에서 좌우 화살표 버튼 또는 스와이프로 집을 여러 방향에서 볼 수 있습니다.
-      숫자 버튼을 누르면 해당 구역으로, ? 버튼을 누르면 그 물건의 이야기를 읽을 수 있습니다.
+      이 집은 선생님이 평생을 보내신 논산의 한옥을 3D로 재현한 것입니다.
+      서재, 정원, 대문 하나하나에 그분의 삶과 이야기가 담겨 있습니다.
     </p>
-    <div class="about-caption">THOM — The House of Memory<br>Made with love, memory, and Blender.</div>
+
+    <a class="about-link-btn" href="https://www.koreanfreedomfighters.com/" target="_blank" rel="noopener noreferrer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>
+      독립운동가 업적
+    </a>
+
+    <div class="about-caption" style="margin-top:56px;">THOM — The House of Memory<br>Made with love, memory, and Blender.</div>
   </div>
 </div>
 
