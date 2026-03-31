@@ -886,11 +886,13 @@ function goHome() {
 function showAbout() {
   if (isAnim) return;
   triggerIntro();
+  document.getElementById('introOverlay').style.display = 'none';
   fadeTransition(() => { showScreen('screen-about'); });
 }
 function goToRoom(n) {
   if (isAnim) return;
   triggerIntro();
+  document.getElementById('introOverlay').style.display = 'none';
   fadeTransition(() => { showScreen('screen-room' + n); });
 }
 function showSubView(id) {
