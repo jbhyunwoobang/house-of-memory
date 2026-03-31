@@ -187,7 +187,7 @@ html, body {
 ===================================================================== */
 #introOverlay {
   position: fixed; inset: 0; background: var(--deep-black);
-  z-index: 700; pointer-events: all;
+  z-index: 700; pointer-events: none;
   transition: opacity 1.1s ease;
 }
 #introOverlay.gone { opacity: 0; pointer-events: none; }
@@ -846,6 +846,7 @@ function triggerIntro() {
 window.addEventListener('wheel',       () => triggerIntro(), { passive: true, once: false });
 window.addEventListener('touchstart',  () => triggerIntro(), { passive: true, once: false });
 window.addEventListener('keydown',     () => triggerIntro(), { once: false });
+window.addEventListener('click',       () => triggerIntro(), { once: false });
 
 /* ============================================================
    SCREEN MANAGEMENT
@@ -863,10 +864,10 @@ function fadeTransition(cb) {
   ov.classList.add('in');
   setTimeout(() => {
     cb();
-    requestAnimationFrame(() => requestAnimationFrame(() => {
+    setTimeout(() => {
       ov.classList.remove('in');
       setTimeout(() => { isAnim = false; }, 500);
-    }));
+    }, 16);
   }, 420);
 }
 
