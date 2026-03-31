@@ -227,7 +227,7 @@ html, body {
   animation: blink 2.2s ease-in-out infinite;
   transition: opacity 0.6s ease;
 }
-#scrollCue.hidden { opacity: 0; }
+#scrollCue.hidden { opacity: 0; pointer-events: none; animation: none; }
 @keyframes blink {
   0%,100% { opacity: 0.35; }
   50%      { opacity: 0.75; }
@@ -392,7 +392,7 @@ html, body {
       <img src="images/overview-original.png" alt="오리지널 뷰">
       <div class="bg-placeholder"><span class="ph-icon">🏠</span>오리지널 뷰<span class="ph-name">images/overview-original.png</span></div>
     </div>
-    <div class="hs-num" style="left:50%;top:69%;"  onclick="goToRoom(1)"><span class="num">1</span></div>
+    <div class="hs-num" style="left:50%;top:76%;"  onclick="goToRoom(1)"><span class="num">1</span></div>
     <div class="hs-num" style="left:25%;top:62%;"  onclick="goToRoom(2)"><span class="num">2</span></div>
     <div class="hs-num" style="left:34%;top:41%;"  onclick="goToRoom(3)"><span class="num">3</span></div>
     <div class="hs-num" style="left:63%;top:55%;"  onclick="goToRoom(4)"><span class="num">4</span></div>
@@ -852,36 +852,7 @@ document.getElementById('modalOverlay').addEventListener('click', e => {
 let touchStartX = 0, touchStartY = 0;
 let lastWheel = 0;
 
-/* 휠 — 수평 스크롤로 뷰 회전 */
-document.getElementById('screen-overview').addEventListener('wheel', e => {
-  if (curScreen !== 'screen-overview') return;
-  const now = Date.now();
-  if (now - lastWheel < 550) return;
-  const ax = Math.abs(e.deltaX), ay = Math.abs(e.deltaY);
-  if (ax > ay && ax > 18) {
-    e.preventDefault();
-    lastWheel = now;
-    e.deltaX > 0 ? nextView() : prevView();
-  }
-}, { passive: false });
-
-/* 터치 스와이프 */
-document.addEventListener('touchstart', e => {
-  touchStartX = e.touches[0].clientX;
-  touchStartY = e.touches[0].clientY;
-}, { passive: true });
-
-document.addEventListener('touchend', e => {
-  if (!e.changedTouches.length) return;
-  const dx = e.changedTouches[0].clientX - touchStartX;
-  const dy = e.changedTouches[0].clientY - touchStartY;
-  if (curScreen === 'screen-overview' && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 38) {
-    dx < 0 ? nextView() : prevView();
-  }
-  if (curScreen !== 'screen-overview' && curScreen !== 'screen-about') {
-    if (dx > 70 && Math.abs(dy) < 55) goHome();
-  }
-}, { passive: true });
+/* 스와이프 비활성화 — 화살표 버튼으로만 뷰 전환 */
 
 /* 터치 — 숫자 버튼 애니메이션 */
 document.querySelectorAll('.hs-num').forEach(el => {
