@@ -301,6 +301,32 @@ html, body {
 .about-p { font-size: 17px; line-height: 2; color: var(--brown); font-weight: 300; margin-bottom: 20px; }
 .about-caption { font-size: 13px; color: var(--tan); letter-spacing: 0.12em; line-height: 1.8; margin-top: 48px; }
 
+/* ========== CLICK HINT ========== */
+#clickHint {
+  position: absolute; bottom: 56px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 150; white-space: nowrap;
+  font-size: 12px; letter-spacing: 0.18em;
+  color: rgba(255,248,235,0.5);
+  display: flex; align-items: center; gap: 6px;
+  pointer-events: none;
+  animation: hintBlink 3s ease-in-out infinite;
+}
+.hint-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 1px solid rgba(255,248,235,0.4);
+  font-size: 11px; font-weight: 700;
+  color: rgba(255,248,235,0.6);
+}
+@keyframes hintBlink {
+  0%,100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+@media (max-width: 600px) {
+  #clickHint { font-size: 10px; bottom: 50px; }
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
   .nav { padding: 16px 18px; }
@@ -366,10 +392,10 @@ html, body {
       <img src="images/overview-original.png" alt="오리지널 뷰">
       <div class="bg-placeholder"><span class="ph-icon">🏠</span>오리지널 뷰<span class="ph-name">images/overview-original.png</span></div>
     </div>
-    <div class="hs-num" style="left:50%;top:74%;"  onclick="goToRoom(1)"><span class="num">1</span></div>
+    <div class="hs-num" style="left:50%;top:69%;"  onclick="goToRoom(1)"><span class="num">1</span></div>
     <div class="hs-num" style="left:25%;top:62%;"  onclick="goToRoom(2)"><span class="num">2</span></div>
-    <div class="hs-num" style="left:19%;top:46%;"  onclick="goToRoom(3)"><span class="num">3</span></div>
-    <div class="hs-num" style="left:63%;top:50%;"  onclick="goToRoom(4)"><span class="num">4</span></div>
+    <div class="hs-num" style="left:34%;top:41%;"  onclick="goToRoom(3)"><span class="num">3</span></div>
+    <div class="hs-num" style="left:63%;top:55%;"  onclick="goToRoom(4)"><span class="num">4</span></div>
   </div>
 
   <!-- VIEW 1: LEFT -->
@@ -402,6 +428,11 @@ html, body {
     </div>
     <div class="hs-num" style="left:28%;top:43%;"  onclick="goToRoom(3)"><span class="num">3</span></div>
     <div class="hs-num" style="left:63%;top:52%;"  onclick="goToRoom(4)"><span class="num">4</span></div>
+  </div>
+
+  <!-- 클릭 힌트 -->
+  <div id="clickHint">
+    <span class="hint-num">1</span> 번호를 눌러 각 공간을 탐험하세요 &nbsp;·&nbsp; 좌우로 스와이프하면 집이 돌아갑니다
   </div>
 
   <!-- 좌우 화살표 -->
