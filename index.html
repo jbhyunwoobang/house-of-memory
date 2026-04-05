@@ -292,6 +292,16 @@ html, body {
   .modal-title { font-size: 22px; }
 }
 
+/* ========== GLOBAL ABOUT BUTTON (root-level, above all stacking contexts) ========== */
+#global-about {
+  position: fixed; top: 22px; right: 28px; z-index: 999;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-weight: 400; letter-spacing: 0.18em;
+  color: var(--text-light); cursor: pointer; transition: opacity 0.2s;
+  background: none; border: none; padding: 0;
+}
+#global-about:hover { opacity: 0.65; }
+
 /* ========== ABOUT SCREEN ========== */
 #screen-about { background: var(--cream); overflow-y: auto; }
 #screen-about .nav-logo,
@@ -840,6 +850,10 @@ function triggerIntro() {
   setTimeout(() => {
     overlay.style.display = 'none';
   }, 1400);
+
+  // global-about 버튼 숨기기 (intro 종료 후 일반 nav가 작동)
+  const ga = document.getElementById('global-about');
+  if (ga) ga.style.display = 'none';
 }
 
 /* 트리거 이벤트들 */
@@ -1007,5 +1021,8 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
+<!-- Root-level ABOUT button: outside all stacking contexts, always above intro overlay -->
+<span id="global-about" onclick="showAbout()">ABOUT</span>
 </body>
 </html>
